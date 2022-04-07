@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-hello
+  namespace: dev
+spec:
+  containers:
+    - image: jenkins/jenkins
+      name: Jenkins
+      ports:
+        - containerPort: 8080
+      resources:
+      
+    - image: ubuntu:latest
+      name: ubuntu
+      command:
+        - /bin/bash
+        - -ec
+        - touch /tmp/qt; sleep 30; rm /tmp/qt; sleep 600
+      livenessProbe:
+        exec: 
+          command:
+            - cat 
+            - /tmp/ganga
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    
